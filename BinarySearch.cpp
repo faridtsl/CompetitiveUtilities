@@ -49,6 +49,22 @@ int MetaBinarySearch(int s,vector<int> v){
 }
 
 
+int MetaBinarySearchV2(int s,vector<int> v){
+	int index,curIndex,res=0;
+	int n = v.size();
+	int lg;
+	for(lg=1;(1<<lg) < n;lg++);
+	lg--;
+	for(index = lg; index >=0;index --){
+		curIndex = res + (1<<index);
+		if(v[curIndex]==s) return curIndex;
+		else if(v[curIndex]<s){
+			res = curIndex;
+		}
+	}
+	return -1;
+}
+
 int main(){
 	freopen("a.in","r",stdin);
 	int T,i,j,k;
@@ -62,4 +78,11 @@ int main(){
 	cout << MetaBinarySearch(2,v) << endl;
 	cout << MetaBinarySearch(3,v) << endl; 
 	cout << MetaBinarySearch(8,v) << endl; 
+	cout << "V2 : " << endl;
+	cout << MetaBinarySearchV2(6,v) << endl;
+	cout << MetaBinarySearchV2(23,v) << endl;
+	cout << MetaBinarySearchV2(1,v) << endl;
+	cout << MetaBinarySearchV2(2,v) << endl;
+	cout << MetaBinarySearchV2(3,v) << endl; 
+	cout << MetaBinarySearchV2(8,v) << endl; 
 }
